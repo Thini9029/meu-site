@@ -1,30 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>Meu Site</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio - Thiago Vinicius</title>
   <style>
     body {
-      background-color: #0f0f0f;
-      color: white;
-      font-family: Arial;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+    header {
+      padding: 60px 20px;
       text-align: center;
-      padding-top: 50px;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #dbeafe;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #93c5fd;
+      margin-bottom: 20px;
+    }
+    .projects, .comments {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
     .card {
-      background: #1e1e1e;
+      background: #020617;
       padding: 20px;
-      border-radius: 15px;
-      width: 300px;
-      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .client {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+    .client img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #2563eb;
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #bfdbfe;
+    }
+    .contact {
+      background: #020617;
+      padding: 30px;
+      border-radius: 12px;
+    }
+    .contact p {
+      margin: 8px 0;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      color: #64748b;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>Zoria SMP</h1>
-    <p>Servidor oficial de Minecraft</p>
+<header>
+  <h1>Thiago Vinicius</h1>
+  <p>Desenvolvedor Freelancer especializado em soluções sob medida, automações, Minecraft Bedrock e bots para Discord.</p>
+</header>
+
+<section>
+  <h2>Sobre mim</h2>
+  <p>
+    Sou desenvolvedor <strong>freelancer</strong> com foco em entregar soluções práticas e eficientes.
+    Atuo com scripts para Minecraft Bedrock Edition, bots para Discord, integrações entre sistemas
+    e desenvolvimento web. Trabalho com prazos claros, comunicação direta e código bem estruturado.
+  </p>
+</section>
+
+<section>
+  <h2>Serviços como Freelancer</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Bot para Discord</h3>
+      <p>Criação de bots personalizados com comandos, permissões, automações e integração com APIs.</p>
+    </div>
+    <div class="card">
+      <h3>Minecraft Bedrock Scripts</h3>
+      <p>Sistemas avançados usando @minecraft/server: entidades, eventos, addons e mecânicas customizadas.</p>
+    </div>
+    <div class="card">
+      <h3>Integrações Personalizadas</h3>
+      <p>Integração entre Minecraft, Discord e sistemas externos com webhooks e armazenamento de dados.</p>
+    </div>
   </div>
+</section>
+
+<section>
+  <h2>Comentários de Clientes</h2>
+  <div class="comments" id="commentsList">
+    <div class="card">
+      <div class="client">
+        <img src="https://i.pravatar.cc/100?img=1" alt="Cliente 1" />
+        <h3>Cliente 1</h3>
+      </div>
+      <p>"Excelente desenvolvedor, entregou tudo no prazo e com muita qualidade."</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:40px; color:#bfdbfe;">Deixe seu comentário</h3>
+  <div class="card">
+    <form id="commentForm">
+      <input type="text" id="name" placeholder="Seu nome" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:none;" />
+      <input type="url" id="photo" placeholder="Link da sua foto (opcional)" style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:none;" />
+      <textarea id="comment" placeholder="Seu comentário" required style="width:100%;padding:10px;height:100px;border-radius:8px;border:none;"></textarea>
+      <button type="submit" style="margin-top:10px;padding:10px 20px;border:none;border-radius:8px;background:#2563eb;color:white;cursor:pointer;">Enviar comentário</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('commentForm');
+  const list = document.getElementById('commentsList');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const photo = document.getElementById('photo').value || 'https://i.pravatar.cc/100';
+    const comment = document.getElementById('comment').value;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    card.innerHTML = `
+      <div class="client">
+        <img src="${photo}" alt="${name}" />
+        <h3>${name}</h3>
+      </div>
+      <p>"${comment}"</p>
+    `;
+
+    list.appendChild(card);
+    form.reset();
+  });
+</script>
+
+<section>
+  <h2>Contato para Freelance</h2>
+  <div class="contact">
+    <p><strong>Email:</strong> seuemail@email.com</p>
+    <p><strong>Discord:</strong> seu_usuario#0000</p>
+    <p><strong>GitHub:</strong> github.com/seuusuario</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 - Thini. Todos os direitos reservados.
+</footer>
 
 </body>
 </html>
